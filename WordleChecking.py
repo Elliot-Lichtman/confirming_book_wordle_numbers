@@ -47,25 +47,14 @@ def score(guess, word):
     return ltos(score)
 ###############################
 
-
-## Calculating all the scores once
-##################################
-scores = {}
-
-for word in word_list:
-    for guess in word_list:
-        scores[guess + word] = score(guess, word)
-
-# all the scores, if you want to inspect
-#print(scores)
-##################################
-
 ## Function to find average # of words left after a guess
 def find_words_left(guess):
     score_counts = {}
 
     for word in word_list:
-        would_be_score = scores[guess + word]
+        would_be_score = score(guess, word)
+
+        print(word, score(guess, word))
 
         if would_be_score not in score_counts:
             score_counts[would_be_score] = 1
@@ -82,4 +71,4 @@ def find_words_left(guess):
     return (total-1)/len(word_list)
     
     
-print(find_words_left("taper"))
+print(find_words_left("water"))
